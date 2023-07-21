@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container *ngFor="let disCol of tableColumns let colIndex = index;" matColumnDef="{{disCol.columnDef}}">
+        <th class= "table-heading" mat-header-cell *matHeaderCellDef>
+            {{ disCol.header }}
+        </th>
+
+        <td class= "table-data" mat-cell *matCellDef="let element">
+            <span *ngIf="!disCol.isActionsEnabled; else isActionsEnabled">
+                {{ disCol.cell(element) }}
+            </span>
+
+            <ng-template #isActionsEnabled >
+                <div class="actionsTemplate">
+                    <button *ngIf="disCol.isDeleteEnabled" mat-icon-button (click)="onDelete(disCol?.tenderId(element), disCol?.bidId(element) )" matTooltip="Delete">
+                        <mat-icon>delete_outline</mat-icon>
+                      </button>
+                    <button *ngIf="disCol.isEditEnabled" mat-icon-button (click)="onEditTender(disCol?.tenderId(element), disCol?.bidId(element))" matTooltip="Edit">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button *ngIf="disCol.isViewBids" mat-raised-button color="primary" (click)="viewTenderBids(disCol?.tenderId(element))"> View bids</button>
+                    <button *ngIf="disCol.isValidateTender" mat-raised-button color="primary" (click)="validateTender(disCol?.tenderId(element))"> Validate Tender</button>
+                    <button *ngIf="disCol.isAddBid" mat-raised-button color="primary" (click)="placeBid(disCol?.tenderId(element))"> Place bid</button>
+                    <button *ngIf="disCol.isViewTender" mat-raised-button color="primary" (click)="viewTender(disCol?.tenderId(element))" > View Tender</button>
+                </div>
+             </ng-template>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns">
+    </tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+</table>

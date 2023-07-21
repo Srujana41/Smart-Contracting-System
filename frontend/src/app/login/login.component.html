@@ -1,0 +1,71 @@
+<div class="register">
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4 register-right">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="row register-form">
+                <div class="logo">
+                  <img src="../../assets/images/smart-bidding-low-resolution-color-logo.png" alt="smart bidding" width="160px" height="80px"/>
+                </div>
+                <div class="error-message">{{ errorMessage }}</div>
+                <div class="form-group">
+                  <label for="walletId">CONNECT WALLET</label>
+                  <div class="form-group">
+                    <div class="input-group mb-3">
+                      <input type="text"  formControlName="walletId" 
+                      [ngClass]="{'is-invalid':walletId?.errors && walletId?.touched}"
+                      class="form-control input-disabled" placeholder="Eth Address"
+                      value="">
+                      <button class="btn btn-outline-secondary connect-to-wallet" 
+                        (click)="getAddress()"
+                        type="button"
+                        title="connect to wallet"> 
+                        <i class='bx bx-wallet-alt'></i>
+                      </button>
+                      <div class="error-message"
+                      *ngIf="!walletId?.valid && walletId?.touched">
+                      <div [hidden]="!walletId?.errors?.['required']">
+                          Wallet address is required
+                      </div>
+                      <div [hidden]="!walletId?.errors?.['pattern']">
+                        Wallet address  should be valid
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <label for="password">PASSWORD</label>
+                <div class="form-group">
+                  <input type="password" formControlName="password"
+                  [ngClass]="{'is-invalid':password?.errors && password?.touched}"
+                  class="form-control" placeholder="Password"
+                    value="" />
+                    <div class="error-message"
+                    *ngIf="!password?.valid && password?.touched">
+                    <div [hidden]="!password?.errors?.['required']">
+                        Password  is required
+                    </div>
+                    <div [hidden]="!password?.errors?.['pattern']">
+                      Password should be atleast 8 character with lowercase , uppercase , number and special character
+                    </div>
+                  </div>
+                </div>
+                <div class="login-button">
+                  <input type="submit" [disabled]="loginForm.invalid"  class="btn btnRegister" value="Log In" />
+                </div>
+                <div class="register-text">You are not a member? <a class="register-link" routerLink="/register">Register</a></div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+        <br>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+  </div>

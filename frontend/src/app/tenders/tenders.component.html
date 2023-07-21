@@ -1,0 +1,9 @@
+<app-navbar  [template]="template" ></app-navbar>
+<ng-template #template>
+    <button mat-raised-button class="create-tender-button" (click)="addTender()" color="primary">Create Tender</button>
+    <app-custom-table
+    [tableColumns]="tableColumns"
+    [tableData]="tenders"
+    [page]="'tenders'">
+    </app-custom-table>
+</ng-template>
