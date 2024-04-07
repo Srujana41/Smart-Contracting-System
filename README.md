@@ -218,7 +218,6 @@ Follow the below steps to run the code in local environment:
 
 - [@shrawank22](https://github.com/shrawank22) 
 - [@Kapil-K-Kathiriya](https://github.com/Kapil-K-Kathiriya) 
-- [@asheejain](https://github.com/asheejain) 
 - [@Srujana41](https://github.com/Srujana41) 
 
 ## 🎉 References <a name = "references" id="references"></a>
